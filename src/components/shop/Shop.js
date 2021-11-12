@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../cart/Cart';
 import Product from '../product/Product';
@@ -9,8 +10,21 @@ const Shop = () => {
     const [cart, setCart] = useState([]);
     const [searchDisplay, setsearchDisplay] = useState([]);
 
+    let newCart = [];
+
     const addToCart = (cartProduct) => {
-        const newCart = [...cart, cartProduct];
+
+        const exists = cart.find(product => product.key === cartProduct.key);
+        if (exists) {
+            const rest = cart.filter(product => cartProduct.key !== product.key)
+            exists.quantity += 1;
+            newCart = [...rest, exists];
+        }
+        else {
+            cartProduct.quantity = 1;
+            newCart = [...cart, cartProduct];
+        }
+
         setCart(newCart);
         addToDb(cartProduct.key);
     }
@@ -63,7 +77,11 @@ const Shop = () => {
                     }
                 </div>
                 <div className="cart-container">
-                    <Cart cart={cart}></Cart>
+                    <Cart cart={cart}>
+                        <Link to='/review'>
+                            <button className='btn-regular'>Review Order</button>
+                        </Link>
+                    </Cart>
                 </div>
             </div>
         </>

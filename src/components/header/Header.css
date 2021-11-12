@@ -17,3 +17,8 @@
     margin-right: 15px;
     color: white;
 }
+
+.header nav a:hover{
+    background-color: whitesmoke;
+    color: black;
+}

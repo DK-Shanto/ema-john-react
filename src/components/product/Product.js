@@ -6,7 +6,7 @@ import './product.css'
 import Rating from 'react-rating';
 
 const Product = (props) => {
-    console.log(props.product)
+    // console.log(props.product)
     const { img, name, seller, stock, price, star } = props.product;
     const cartIcon = <FontAwesomeIcon icon={faShoppingCart} />
     return (
@@ -25,6 +25,7 @@ const Product = (props) => {
                     fullSymbol="fas fa-star icon-color"
                     readonly
                 ></Rating>
+                <br />
                 <br />
                 <button className="btn-regular"
                     onClick={() => props.addToCart(props.product)}>{cartIcon} add to cart</button>
