@@ -11,8 +11,8 @@ import PlaceOrder from './components/placeOrder/PlaceOrder';
 function App() {
   return (
     <div>
-      <Header></Header>
       <BrowserRouter>
+        <Header></Header>
         <Routes>
           <Route path="/shop" element={<Shop></Shop>}>
           </Route>
